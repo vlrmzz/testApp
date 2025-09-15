@@ -1,5 +1,5 @@
 # Multi-stage build
-FROM node:18-alpine AS client-builder
+FROM node:18 AS client-builder
 
 # Build client
 WORKDIR /app/client
@@ -8,7 +8,7 @@ RUN npm install
 COPY client/ ./
 RUN npm run build
 
-FROM node:18-alpine AS server
+FROM node:18 AS server
 
 # Set working directory
 WORKDIR /app
