@@ -1,0 +1,28 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+.DS_Store
+*.log
+logs
+.vscode
+.idea
+
+# Client build artifacts (we copy the built version separately)
+client/node_modules
+client/build
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# Server artifacts
+server/node_modules
+
+# Docker
+Dockerfile*
+docker-compose*

@@ -1,0 +1,25 @@
+name: habit-tracker
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: your-username/habit-tracker
+    branch: main
+  run_command: npm start
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  routes:
+  - path: /
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: JWT_SECRET
+    value: ${JWT_SECRET}
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+databases:
+- name: db
+  engine: PG
+  version: "15"
+  size: basic-xs

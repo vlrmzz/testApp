@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for development
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: habit_tracker_dev
+      POSTGRES_USER: habit_user
+      POSTGRES_PASSWORD: habit_password
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U habit_user -d habit_tracker_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for development
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
