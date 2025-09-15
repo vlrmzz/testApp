@@ -27,8 +27,8 @@ COPY server/ ./server/
 COPY --from=client-builder /app/client/build ./client/build
 
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nodejs -u 1001
+RUN groupadd --gid 1001 nodejs
+RUN useradd --uid 1001 --gid nodejs --shell /bin/bash --create-home nodejs
 
 # Change ownership of the app directory
 RUN chown -R nodejs:nodejs /app
