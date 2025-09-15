@@ -14,6 +14,9 @@ const { authenticateToken } = require('./middleware/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Trust proxy for Railway deployment
+app.set('trust proxy', 1);
+
 // Security middleware
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet({
